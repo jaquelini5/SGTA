@@ -1,0 +1,3 @@
+public interface ListaRepository extends JpaRepository<Lista, Long> {}
+
+public interface ItemRepository extends JpaRepository<Item, Long> {}
