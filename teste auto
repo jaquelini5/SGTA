@@ -1,0 +1,30 @@
+@SpringBootTest
+class ListaServiceTests {
+
+    @Autowired
+    private ListaService listaService;
+
+    @Test
+    void criarListaDeveRetornarLista() {
+        Lista lista = new Lista();
+        lista.setNome("Nova Lista");
+        Lista salva = listaService.criarLista(lista);
+        assertNotNull(salva.getId());
+    }
+}
+
+@SpringBootTest
+class ItemServiceTests {
+
+    @Autowired
+    private ItemService itemService;
+
+    @Test
+    void adicionarItemDeveRetornarItem() {
+        Item item = new Item();
+        item.setTitulo("Novo Item");
+        item.setDescricao("Descrição do Item");
+        Item salvo = itemService.adicionarItem(1L, item);
+        assertNotNull(salvo.getId());
+    }
+}
