@@ -1,0 +1,39 @@
+@RestController
+@RequestMapping("/listas")
+public class ListaController {
+    @Autowired
+    private ListaService listaService;
+
+    @PostMapping
+    public Lista criarLista(@RequestBody Lista lista) {
+        return listaService.criarLista(lista);
+    }
+
+    @GetMapping("/{id}")
+    public Lista buscarLista(@PathVariable Long id) {
+        return listaService.buscarLista(id);
+    }
+}
+
+@RestController
+@RequestMapping("/itens")
+public class ItemController {
+    @Autowired
+    private ItemService itemService;
+
+    @PostMapping("/{listaId}")
+    public Item adicionarItem(@PathVariable Long listaId, @RequestBody Item item) {
+        return itemService.adicionarItem(listaId, item);
+    }
+
+    @PutMapping("/{id}")
+    public Item atualizarItem(@PathVariable Long id, @RequestBody Item item) {
+        item.setId(id);
+        return itemService.atualizarItem(item);
+    }
+
+    @DeleteMapping("/{id}")
+    public void removerItem(@PathVariable Long id) {
+        itemService.removerItem(id);
+    }
+}
