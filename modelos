@@ -1,0 +1,25 @@
+@Entity
+public class Lista {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nome;
+
+    @OneToMany(mappedBy = "lista", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Item> itens = new ArrayList<>();
+}
+
+@Entity
+public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String titulo;
+    private String descricao;
+    private boolean prioridade;
+    private String estado;
+
+    @ManyToOne
+    @JoinColumn(name = "lista_id")
+    private Lista lista;
+}
